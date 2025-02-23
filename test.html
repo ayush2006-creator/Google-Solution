@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveKit Test</title>
+</head>
+<body>
+    <h1>Testing LiveKit Connection</h1>
+    <script type="module">
+        import { Room } from "./node_modules/livekit-client/dist/livekit-client.esm.js";
+
+        async function testJoin() {
+            const wsURL = "ws://192.168.241.184:7880"; // Your server IP
+            const token = "<PASTE YOUR TOKEN HERE>";
+
+            const room = new Room();
+            await room.connect(wsURL, token);
+            console.log("✅ Connected to room:", room.name);
+
+            room.on("participantConnected", (p) => console.log("👤 New participant:", p.identity));
+        }
+
+        testJoin();
+    </script>
+</body>
+</html>
+
+
+
+
